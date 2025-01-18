@@ -1,37 +1,39 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "../../redux/contactsOps";
+import { fetchContacts, deleteContact } from "../../redux/contactsOps";
+import { selectFilteredContacts } from "../../redux/contactsSlice";
 import s from "./ContactList.module.css";
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
+  const contacts = useSelector(selectFilteredContacts);
   const loading = useSelector((state) => state.contacts.loading);
-  const error = useSelector((state) => state.contacts.error);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    dispatch(deleteContact(id));
+  };
+
   if (loading) {
     return <p>Loading contacts...</p>;
   }
 
-  if (error) {
-    return <p>Error loading contacts: {error}</p>;
-  }
-
-  if (!Array.isArray(contacts)) {
-    return <p>No contacts available.</p>;
-  }
   return (
-    <ul className={s.contact_list}>
-      {contacts.map(({ id, name, phone }) => (
-        <li className={s.contact_item} key={id}>
-          {name}: {phone}
-        </li>
-      ))}
-    </ul>
+    <div className={s.contact_wraper}>
+      <ul className={s.contact_list}>
+        {contacts.map(({ id, name, phone }) => (
+          <li className={s.contact_item} key={id}>
+            {name}: {phone}{" "}
+            <button className={s.contact_btn} onClick={() => handleDelete(id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

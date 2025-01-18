@@ -1,14 +1,28 @@
-.contact_list {
+.contact_wraper {
   display: flex;
-  flex-direction: column;
-  /* width: fit-content; */
-  gap: 20px;
-  border: 2px solid black;
-  border: 20px;
-  padding: 10px;
+  justify-content: center;
+}
+
+.contact_list {
   list-style: none;
+  gap: 20px;
+  width: fit-content;
 }
 
 .contact_item {
-  justify-content: center;
+  border: 2px solid black;
+  border: 20px;
+  padding: 10px;
+}
+
+.contact_btn {
+  background-color: rgb(106, 130, 55);
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  color: black;
+  &&:hover {
+    background-color: aquamarine;
+  }
+  margin-bottom: 8px;
 }
