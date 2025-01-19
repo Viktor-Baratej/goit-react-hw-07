@@ -4,21 +4,25 @@
 }
 
 .contact_list {
-  list-style: none;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+  list-style: none;
   width: fit-content;
 }
 
 .contact_item {
   border: 2px solid black;
-  border: 20px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .contact_btn {
+  margin-left: 20px;
   background-color: rgb(106, 130, 55);
   border: none;
-  padding: 5px;
+  padding: 10px;
   border-radius: 20px;
   color: black;
   &&:hover {
